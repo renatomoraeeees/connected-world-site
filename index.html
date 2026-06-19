@@ -46,9 +46,14 @@
     #hdr.sc { background: rgba(8,16,31,.99); box-shadow: 0 4px 32px rgba(0,0,0,.35); }
     .hi {
         max-width:1200px; margin:0 auto; padding:0 28px;
-        display:flex; align-items:center; justify-content:space-between; height:72px;
+        display:flex; align-items:center; justify-content:space-between; height:80px;
     }
-    .logo img { height:42px; }
+    .logo img {
+        height:56px;
+        filter: drop-shadow(0 0 10px rgba(93,168,229,0.35)) brightness(1.08);
+        transition: filter .3s;
+    }
+    .logo:hover img { filter: drop-shadow(0 0 16px rgba(93,168,229,0.55)) brightness(1.15); }
     nav { display:flex; align-items:center; gap:2px; }
     nav a {
         color:rgba(255,255,255,.75); text-decoration:none;
@@ -328,23 +333,29 @@
         gap:12px; transition:.28s; cursor:default; min-height:120px;
     }
     .logo-card:hover { border-color:rgba(26,79,160,.18); box-shadow:0 8px 28px rgba(13,32,80,.1); transform:translateY(-4px); }
-    .lc-logo { display:flex; align-items:center; justify-content:center; height:44px; }
+    .lc-logo { display:flex; align-items:center; justify-content:center; height:56px; }
     .lc-name { font-size:.72rem; font-weight:600; color:var(--g600); text-align:center; letter-spacing:.3px; }
+    .cli-img {
+        height:52px; width:auto; max-width:120px;
+        object-fit:contain;
+        transition: transform .25s, filter .25s;
+    }
+    .logo-card:hover .cli-img { transform:scale(1.08); }
 
-    /* Individual brand marks */
-    .brand-bb   { display:flex; align-items:center; justify-content:center; width:48px; height:48px; background:#FFD400; border-radius:8px; position:relative; }
-    .brand-bb span { font-size:.55rem; font-weight:900; color:#003B85; text-align:center; line-height:1.1; }
-    .brand-bra  { display:flex; align-items:center; justify-content:center; width:48px; height:48px; }
+    /* CSS fallbacks (shown only if image fails) */
+    .brand-bb   { display:none; align-items:center; justify-content:center; width:52px; height:52px; background:#FFD400; border-radius:8px; }
+    .brand-bb span { font-size:.52rem; font-weight:900; color:#003B85; text-align:center; line-height:1.1; }
+    .brand-bra  { display:none; align-items:center; justify-content:center; }
     .brand-bra span { font-size:1.1rem; font-weight:900; color:#CC1717; font-style:italic; }
-    .brand-dro  { display:flex; align-items:center; justify-content:center; gap:3px; }
+    .brand-dro  { display:none; align-items:center; justify-content:center; gap:3px; }
     .brand-dro .plus { font-size:1.4rem; font-weight:900; color:#E31837; }
     .brand-dro .dname { font-size:.8rem; font-weight:900; color:#E31837; letter-spacing:.5px; }
-    .brand-mc   { display:flex; align-items:center; justify-content:center; width:48px; height:48px; background:#DA291C; border-radius:8px; }
+    .brand-mc   { display:none; align-items:center; justify-content:center; width:52px; height:52px; background:#DA291C; border-radius:8px; }
     .brand-mc span { font-size:1.6rem; font-weight:900; color:#FFC72C; line-height:1; }
-    .brand-lau  { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:2px; }
+    .brand-lau  { display:none; align-items:center; justify-content:center; flex-direction:column; gap:2px; }
     .brand-lau .lau-bar { width:40px; height:3px; background:#1C3F6E; border-radius:2px; }
     .brand-lau span { font-size:.65rem; font-weight:800; color:#1C3F6E; letter-spacing:2px; text-transform:uppercase; }
-    .brand-ntt  { display:flex; align-items:center; justify-content:center; }
+    .brand-ntt  { display:none; align-items:center; justify-content:center; }
     .brand-ntt span { font-size:1.5rem; font-weight:900; color:#005BAB; letter-spacing:2px; }
 
     /* ═══════════════════ STATS ═══════════════════ */
@@ -794,9 +805,11 @@
                 <!-- Banco do Brasil -->
                 <div class="logo-card">
                     <div class="lc-logo">
-                        <div class="brand-bb">
-                            <span>BANCO<br>DO BRASIL</span>
-                        </div>
+                        <img class="cli-img"
+                             src="https://logo.clearbit.com/bb.com.br"
+                             alt="Banco do Brasil"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="brand-bb"><span>BANCO<br>DO BRASIL</span></div>
                     </div>
                     <span class="lc-name">Banco do Brasil</span>
                 </div>
@@ -804,9 +817,11 @@
                 <!-- Bradesco -->
                 <div class="logo-card">
                     <div class="lc-logo">
-                        <div class="brand-bra">
-                            <span>bradesco</span>
-                        </div>
+                        <img class="cli-img"
+                             src="https://logo.clearbit.com/bradesco.com.br"
+                             alt="Bradesco"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="brand-bra"><span>bradesco</span></div>
                     </div>
                     <span class="lc-name">Bradesco</span>
                 </div>
@@ -814,10 +829,11 @@
                 <!-- Drogasil -->
                 <div class="logo-card">
                     <div class="lc-logo">
-                        <div class="brand-dro">
-                            <span class="plus">+</span>
-                            <span class="dname">DROGASIL</span>
-                        </div>
+                        <img class="cli-img"
+                             src="https://logo.clearbit.com/drogasil.com.br"
+                             alt="Drogasil"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="brand-dro"><span class="plus">+</span><span class="dname">DROGASIL</span></div>
                     </div>
                     <span class="lc-name">Drogasil</span>
                 </div>
@@ -825,9 +841,11 @@
                 <!-- McDonald's -->
                 <div class="logo-card">
                     <div class="lc-logo">
-                        <div class="brand-mc">
-                            <span>M</span>
-                        </div>
+                        <img class="cli-img"
+                             src="https://logo.clearbit.com/mcdonalds.com"
+                             alt="McDonald's"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="brand-mc"><span>M</span></div>
                     </div>
                     <span class="lc-name">McDonald's</span>
                 </div>
@@ -835,11 +853,11 @@
                 <!-- Laurenti -->
                 <div class="logo-card">
                     <div class="lc-logo">
-                        <div class="brand-lau">
-                            <div class="lau-bar"></div>
-                            <span>LAURENTI</span>
-                            <div class="lau-bar"></div>
-                        </div>
+                        <img class="cli-img"
+                             src="https://logo.clearbit.com/laurenti.com.br"
+                             alt="Laurenti"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="brand-lau"><div class="lau-bar"></div><span>LAURENTI</span><div class="lau-bar"></div></div>
                     </div>
                     <span class="lc-name">Laurenti</span>
                 </div>
@@ -847,9 +865,11 @@
                 <!-- NTT -->
                 <div class="logo-card">
                     <div class="lc-logo">
-                        <div class="brand-ntt">
-                            <span>NTT</span>
-                        </div>
+                        <img class="cli-img"
+                             src="https://logo.clearbit.com/ntt.com"
+                             alt="NTT"
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                        <div class="brand-ntt"><span>NTT</span></div>
                     </div>
                     <span class="lc-name">NTT</span>
                 </div>
