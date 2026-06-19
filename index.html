@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected World – Soluções em TI | Alphaville, Barueri SP</title>
+    <meta name="description" content="Connected World – Infraestrutura de TI, redes, segurança eletrônica, suporte 24h e mais. Alphaville, Barueri SP. Clientes: Banco do Brasil, Bradesco, McDonald's e outros.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+    /* ═══════════════════ RESET & VARS ═══════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+        --dark:       #08101f;
+        --navy:       #0d2050;
+        --blue:       #1a4fa0;
+        --mid:        #2472c8;
+        --light:      #3d8dd4;
+        --sky:        #5ba8e5;
+        --green:      #3cb55e;
+        --green-l:    #52d674;
+        --white:      #ffffff;
+        --g50:        #f5f8fd;
+        --g100:       #edf1f8;
+        --g200:       #d3dcea;
+        --g500:       #8896b3;
+        --g600:       #5c6f92;
+        --g800:       #243050;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--g800); background: #fff; overflow-x: hidden; }
+    img  { display: block; max-width: 100%; }
+    a    { color: inherit; }
+
+    /* ═══════════════════ HEADER ═══════════════════ */
+    #hdr {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+        background: rgba(8,16,31,.93);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(255,255,255,.07);
+        transition: .3s;
+    }
+    #hdr.sc { background: rgba(8,16,31,.99); box-shadow: 0 4px 32px rgba(0,0,0,.35); }
+    .hi {
+        max-width:1200px; margin:0 auto; padding:0 28px;
+        display:flex; align-items:center; justify-content:space-between; height:72px;
+    }
+    .logo img { height:42px; }
+    nav { display:flex; align-items:center; gap:2px; }
+    nav a {
+        color:rgba(255,255,255,.75); text-decoration:none;
+        font-size:.79rem; font-weight:500; letter-spacing:.7px; text-transform:uppercase;
+        padding:8px 13px; border-radius:7px; transition:.2s;
+    }
+    nav a:hover, nav a.on { color:#fff; background:rgba(255,255,255,.08); }
+    .ncta {
+        background:var(--green)!important; color:#fff!important;
+        padding:9px 20px!important; border-radius:9px!important; font-weight:600!important; margin-left:10px;
+    }
+    .ncta:hover { background:var(--green-l)!important; transform:translateY(-1px); box-shadow:0 4px 16px rgba(60,181,94,.45)!important; }
+    .mbtn { display:none; background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer; padding:8px; }
+    .mnav { display:none; flex-direction:column; background:rgba(8,16,31,.99); padding:12px 24px 20px; border-top:1px solid rgba(255,255,255,.06); }
+    .mnav.o { display:flex; }
+    .mnav a { color:rgba(255,255,255,.75); text-decoration:none; font-size:.9rem; font-weight:500; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.05); }
+
+    /* ═══════════════════ HERO ═══════════════════ */
+    #home {
+        min-height:100vh;
+        background:linear-gradient(135deg,#08101f 0%,#0d2050 44%,#1a4fa0 100%);
+        position:relative; display:flex; align-items:center; overflow:hidden;
+    }
+    #home::before {
+        content:''; position:absolute; inset:0; pointer-events:none;
+        background:
+            radial-gradient(ellipse 70% 60% at 72% 55%,rgba(36,114,200,.22) 0%,transparent 58%),
+            radial-gradient(ellipse 40% 50% at 14% 80%,rgba(60,181,94,.07) 0%,transparent 52%);
+    }
+    #hcv { position:absolute; inset:0; pointer-events:none; }
+    .hin {
+        max-width:1200px; margin:0 auto; padding:120px 28px 80px;
+        position:relative; z-index:1;
+        display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+    }
+    .hbadge {
+        display:inline-flex; align-items:center; gap:8px;
+        background:rgba(60,181,94,.1); border:1px solid rgba(60,181,94,.28);
+        color:#5edb82; font-size:.72rem; font-weight:700; letter-spacing:1.8px; text-transform:uppercase;
+        padding:6px 14px; border-radius:50px; margin-bottom:22px;
+    }
+    .hbadge::before { content:''; width:6px; height:6px; background:var(--green); border-radius:50%; animation:pdot 1.6s infinite; }
+    @keyframes pdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.45)} }
+    .htitle {
+        font-size:clamp(2.1rem,3.7vw,3.4rem); font-weight:900; color:#fff;
+        line-height:1.13; margin-bottom:22px; letter-spacing:-.5px;
+    }
+    .htitle .acc { color:var(--sky); display:block; }
+    .hdesc { font-size:1.01rem; color:rgba(255,255,255,.68); line-height:1.84; margin-bottom:38px; max-width:490px; }
+    .hact { display:flex; gap:14px; flex-wrap:wrap; }
+    .bp {
+        display:inline-flex; align-items:center; gap:9px;
+        background:var(--green); color:#fff; text-decoration:none;
+        font-weight:700; font-size:.9rem; padding:14px 28px; border-radius:10px;
+        transition:.25s; border:none; cursor:pointer; font-family:'Inter',sans-serif;
+    }
+    .bp:hover { background:var(--green-l); transform:translateY(-2px); box-shadow:0 8px 24px rgba(60,181,94,.42); }
+    .bo {
+        display:inline-flex; align-items:center; gap:9px;
+        background:transparent; color:#fff; text-decoration:none;
+        font-weight:600; font-size:.9rem; padding:14px 28px; border-radius:10px;
+        border:1.5px solid rgba(255,255,255,.28); transition:.25s;
+    }
+    .bo:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.55); }
+    .hstats {
+        display:flex; gap:36px; margin-top:50px; padding-top:36px;
+        border-top:1px solid rgba(255,255,255,.1);
+    }
+    .hsn { font-size:1.85rem; font-weight:900; color:#fff; line-height:1; }
+    .hsn .pl { color:var(--green-l); }
+    .hsl { font-size:.71rem; color:rgba(255,255,255,.5); font-weight:500; margin-top:5px; text-transform:uppercase; letter-spacing:.9px; }
+
+    /* Globe */
+    .hv { display:flex; justify-content:center; align-items:center; }
+    .gw { position:relative; width:370px; height:370px; }
+    .ring { position:absolute; border-radius:50%; border:1.5px solid rgba(93,168,229,.18); }
+    .r1 { inset:0;     animation:sp 10s linear infinite; }
+    .r2 { inset:-30px; border-color:rgba(93,168,229,.1);  animation:sp 15s linear infinite reverse; }
+    .r3 { inset:-60px; border-color:rgba(93,168,229,.06); animation:sp 20s linear infinite; }
+    @keyframes sp { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+    .gc {
+        position:absolute; inset:44px; border-radius:50%;
+        background:radial-gradient(circle at 33% 33%,var(--sky) 0%,var(--blue) 38%,var(--navy) 100%);
+        box-shadow:0 0 60px rgba(36,114,200,.45),0 0 120px rgba(36,114,200,.18),inset 0 0 40px rgba(255,255,255,.06);
+        display:flex; align-items:center; justify-content:center;
+        animation:fl 4s ease-in-out infinite;
+    }
+    @keyframes fl { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+    .gsvg { width:62%; height:62%; opacity:.55; }
+
+    /* ═══════════════════ SHARED ═══════════════════ */
+    section { padding:96px 0; }
+    .ct { max-width:1200px; margin:0 auto; padding:0 28px; }
+    .stag {
+        display:inline-flex; align-items:center; gap:7px;
+        background:rgba(26,79,160,.07); color:var(--blue);
+        font-size:.7rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+        padding:5px 13px; border-radius:50px; margin-bottom:14px;
+        border:1px solid rgba(26,79,160,.12);
+    }
+    .stit {
+        font-size:clamp(1.75rem,2.7vw,2.45rem); font-weight:800;
+        color:var(--dark); line-height:1.2; margin-bottom:14px; letter-spacing:-.3px;
+    }
+    .stit em { font-style:normal; color:var(--blue); }
+    .sdesc { font-size:1.01rem; color:var(--g600); line-height:1.82; max-width:600px; }
+    .sh { margin-bottom:58px; }
+    .sh.c { text-align:center; }
+    .sh.c .sdesc { margin:0 auto; }
+
+    /* fade-up */
+    .fu { opacity:0; transform:translateY(28px); transition:opacity .65s ease,transform .65s ease; }
+    .fu.v { opacity:1; transform:translateY(0); }
+    .d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s}
+    .d4{transition-delay:.32s} .d5{transition-delay:.40s} .d6{transition-delay:.48s}
+    .d7{transition-delay:.56s} .d8{transition-delay:.64s}
+
+    /* ═══════════════════ ABOUT ═══════════════════ */
+    #sobre { background:var(--g50); }
+    .ag { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
+    .avc {
+        background:#fff; border-radius:22px; padding:36px;
+        box-shadow:0 8px 44px rgba(13,32,80,.09); position:relative; overflow:hidden;
+    }
+    .avc::before {
+        content:''; position:absolute; top:0; left:0; right:0; height:4px;
+        background:linear-gradient(90deg,var(--blue),var(--light),var(--sky));
+    }
+    .ig { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:26px; }
+    .ic {
+        display:flex; flex-direction:column; align-items:center; gap:9px;
+        background:var(--g50); border-radius:13px; padding:20px 12px; transition:.22s; cursor:default;
+    }
+    .ic:hover { background:rgba(26,79,160,.05); transform:translateY(-3px); }
+    .ic i { font-size:1.7rem; color:var(--blue); }
+    .ic p { font-size:.77rem; font-weight:600; color:var(--g800); text-align:center; line-height:1.3; }
+    .alg { text-align:center; padding-top:8px; }
+    .alg img { height:44px; opacity:.82; margin:0 auto; }
+
+    .bq {
+        display:flex; align-items:flex-start; gap:14px;
+        background:linear-gradient(135deg,rgba(26,79,160,.04),rgba(36,114,200,.07));
+        border-left:3px solid var(--blue); border-radius:0 14px 14px 0;
+        padding:20px 24px; margin:26px 0;
+    }
+    .bq i { color:var(--blue); font-size:1.1rem; flex-shrink:0; margin-top:2px; }
+    .bq p { font-size:.95rem; color:var(--g800); line-height:1.74; font-style:italic; }
+
+    /* MVV Cards */
+    .mvv { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px; }
+    .mvv-card {
+        background:#fff; border-radius:14px; padding:22px 18px;
+        border:1.5px solid var(--g100); text-align:center; transition:.22s;
+    }
+    .mvv-card:hover { border-color:rgba(26,79,160,.15); box-shadow:0 6px 24px rgba(13,32,80,.07); }
+    .mvv-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
+    .mvv-icon.mis { background:linear-gradient(135deg,rgba(26,79,160,.1),rgba(36,114,200,.14)); }
+    .mvv-icon.vis { background:linear-gradient(135deg,rgba(60,181,94,.1),rgba(82,214,116,.14)); }
+    .mvv-icon.val { background:linear-gradient(135deg,rgba(255,165,0,.1),rgba(255,200,0,.14)); }
+    .mvv-icon i { font-size:1.2rem; }
+    .mvv-icon.mis i { color:var(--blue); }
+    .mvv-icon.vis i { color:var(--green); }
+    .mvv-icon.val i { color:#e6920a; }
+    .mvv-title { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--g500); margin-bottom:6px; }
+    .mvv-text { font-size:.82rem; color:var(--g800); line-height:1.68; }
+
+    /* ═══════════════════ SERVICES ═══════════════════ */
+    #solucoes { background:#fff; }
+    .sg { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+    .sc {
+        background:#fff; border-radius:16px; padding:28px 22px;
+        border:1.5px solid var(--g100); transition:.3s; position:relative; overflow:hidden;
+    }
+    .sc::after {
+        content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+        background:linear-gradient(90deg,var(--blue),var(--light));
+        transform:scaleX(0); transform-origin:left; transition:.35s ease;
+    }
+    .sc:hover { transform:translateY(-6px); box-shadow:0 18px 48px rgba(13,32,80,.12); border-color:rgba(26,79,160,.1); }
+    .sc:hover::after { transform:scaleX(1); }
+    .si {
+        width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+        margin-bottom:18px; background:linear-gradient(135deg,rgba(26,79,160,.07),rgba(36,114,200,.11)); transition:.3s;
+    }
+    .sc:hover .si { background:linear-gradient(135deg,var(--blue),var(--mid)); }
+    .si i { font-size:1.35rem; color:var(--blue); transition:.3s; }
+    .sc:hover .si i { color:#fff; }
+    .st { font-size:.95rem; font-weight:700; color:var(--dark); margin-bottom:9px; }
+    .sd { font-size:.82rem; color:var(--g600); line-height:1.76; }
+
+    /* Serviços especializados – compact pill list */
+    .spec-wrap { margin-top:48px; }
+    .spec-title { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--g500); margin-bottom:16px; }
+    .spec-grid { display:flex; flex-wrap:wrap; gap:10px; }
+    .spec-pill {
+        display:inline-flex; align-items:center; gap:7px;
+        background:var(--g50); border:1px solid var(--g200);
+        border-radius:50px; padding:7px 14px;
+        font-size:.8rem; font-weight:500; color:var(--g800);
+        transition:.2s;
+    }
+    .spec-pill:hover { background:rgba(26,79,160,.06); border-color:rgba(26,79,160,.2); color:var(--blue); }
+    .spec-pill i { font-size:.75rem; color:var(--blue); }
+
+    /* ═══════════════════ DIFERENCIAIS ═══════════════════ */
+    #diferenciais {
+        background:linear-gradient(135deg,var(--dark) 0%,var(--navy) 55%,#1a4fa0 100%);
+        position:relative; overflow:hidden;
+    }
+    #diferenciais::before {
+        content:''; position:absolute; inset:0; pointer-events:none;
+        background:radial-gradient(ellipse 65% 80% at 84% 44%,rgba(36,114,200,.14) 0%,transparent 55%);
+    }
+    #diferenciais .stag { background:rgba(60,181,94,.1); color:#5edb82; border-color:rgba(60,181,94,.2); }
+    #diferenciais .stit { color:#fff; }
+    #diferenciais .stit em { color:var(--sky); }
+    #diferenciais .sdesc { color:rgba(255,255,255,.6); }
+    .bg { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; position:relative; z-index:1; }
+    .bc {
+        background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.07);
+        border-radius:18px; padding:28px; transition:.28s;
+    }
+    .bc:hover { background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.14); transform:translateY(-5px); }
+    .bic {
+        width:44px; height:44px; border-radius:12px;
+        background:linear-gradient(135deg,var(--green),#2da84d);
+        display:flex; align-items:center; justify-content:center; margin-bottom:15px;
+    }
+    .bic i { color:#fff; font-size:1rem; }
+    .btit { font-size:.92rem; font-weight:700; color:#fff; margin-bottom:7px; }
+    .bdsc { font-size:.81rem; color:rgba(255,255,255,.5); line-height:1.74; }
+
+    /* ═══════════════════ CLIENTS ═══════════════════ */
+    #clientes { background:var(--g50); }
+
+    .clients-showcase {
+        display:grid; grid-template-columns:1fr 1.05fr; gap:56px; align-items:center; margin-bottom:64px;
+    }
+    .clients-img-wrap {
+        position:relative; border-radius:20px; overflow:hidden;
+        box-shadow:0 16px 56px rgba(13,32,80,.14);
+    }
+    .clients-img-wrap img { width:100%; height:auto; display:block; }
+    .clients-img-badge {
+        position:absolute; bottom:20px; left:20px;
+        background:rgba(8,16,31,.85); backdrop-filter:blur(12px);
+        border:1px solid rgba(255,255,255,.12);
+        color:#fff; border-radius:12px; padding:12px 18px;
+        font-size:.8rem; font-weight:600;
+        display:flex; align-items:center; gap:8px;
+    }
+    .clients-img-badge i { color:var(--green-l); }
+
+    .clients-copy .stag { margin-bottom:14px; }
+    .clients-copy .stit { margin-bottom:14px; }
+    .clients-copy .sdesc { margin-bottom:24px; }
+
+    .client-sectors { display:flex; flex-direction:column; gap:10px; }
+    .cs-item {
+        display:flex; align-items:center; gap:12px;
+        padding:14px 18px; background:#fff; border-radius:12px;
+        border:1px solid var(--g100); font-size:.86rem; font-weight:500; color:var(--g800);
+        transition:.2s;
+    }
+    .cs-item:hover { border-color:rgba(26,79,160,.15); background:rgba(26,79,160,.02); }
+    .cs-item i { color:var(--blue); font-size:1rem; width:20px; text-align:center; }
+
+    /* Logo strip */
+    .clients-logos-title {
+        text-align:center; margin-bottom:32px;
+        font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--g500);
+    }
+    .logos-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
+    .logo-card {
+        background:#fff; border-radius:16px; border:1.5px solid var(--g100);
+        padding:28px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+        gap:12px; transition:.28s; cursor:default; min-height:120px;
+    }
+    .logo-card:hover { border-color:rgba(26,79,160,.18); box-shadow:0 8px 28px rgba(13,32,80,.1); transform:translateY(-4px); }
+    .lc-logo { display:flex; align-items:center; justify-content:center; height:44px; }
+    .lc-name { font-size:.72rem; font-weight:600; color:var(--g600); text-align:center; letter-spacing:.3px; }
+
+    /* Individual brand marks */
+    .brand-bb   { display:flex; align-items:center; justify-content:center; width:48px; height:48px; background:#FFD400; border-radius:8px; position:relative; }
+    .brand-bb span { font-size:.55rem; font-weight:900; color:#003B85; text-align:center; line-height:1.1; }
+    .brand-bra  { display:flex; align-items:center; justify-content:center; width:48px; height:48px; }
+    .brand-bra span { font-size:1.1rem; font-weight:900; color:#CC1717; font-style:italic; }
+    .brand-dro  { display:flex; align-items:center; justify-content:center; gap:3px; }
+    .brand-dro .plus { font-size:1.4rem; font-weight:900; color:#E31837; }
+    .brand-dro .dname { font-size:.8rem; font-weight:900; color:#E31837; letter-spacing:.5px; }
+    .brand-mc   { display:flex; align-items:center; justify-content:center; width:48px; height:48px; background:#DA291C; border-radius:8px; }
+    .brand-mc span { font-size:1.6rem; font-weight:900; color:#FFC72C; line-height:1; }
+    .brand-lau  { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:2px; }
+    .brand-lau .lau-bar { width:40px; height:3px; background:#1C3F6E; border-radius:2px; }
+    .brand-lau span { font-size:.65rem; font-weight:800; color:#1C3F6E; letter-spacing:2px; text-transform:uppercase; }
+    .brand-ntt  { display:flex; align-items:center; justify-content:center; }
+    .brand-ntt span { font-size:1.5rem; font-weight:900; color:#005BAB; letter-spacing:2px; }
+
+    /* ═══════════════════ STATS ═══════════════════ */
+    #stats { padding:0; }
+    .sw {
+        display:grid; grid-template-columns:repeat(4,1fr);
+        gap:1px; background:var(--g200);
+        border-radius:20px; overflow:hidden; margin:0 28px;
+        max-width:1144px; margin-left:auto; margin-right:auto;
+    }
+    .si2 { background:#fff; padding:46px 24px; text-align:center; transition:background .2s; }
+    .si2:hover { background:var(--g50); }
+    .snum { display:block; font-size:2.8rem; font-weight:900; color:var(--blue); line-height:1; }
+    .ssuf { color:var(--green); }
+    .slbl { font-size:.74rem; font-weight:600; color:var(--g500); text-transform:uppercase; letter-spacing:1px; margin-top:9px; }
+
+    /* ═══════════════════ CONTACT ═══════════════════ */
+    #contato { background:#fff; }
+    .cw { display:grid; grid-template-columns:1fr 1.45fr; gap:56px; align-items:start; }
+    .ci { display:flex; flex-direction:column; gap:14px; }
+    .cii {
+        display:flex; align-items:flex-start; gap:14px;
+        padding:20px 18px; background:var(--g50); border-radius:13px;
+        border:1px solid var(--g100); transition:.2s;
+    }
+    .cii:hover { background:rgba(26,79,160,.04); border-color:rgba(26,79,160,.1); }
+    .cico { width:40px; height:40px; background:linear-gradient(135deg,var(--blue),var(--mid)); border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .cico i { color:#fff; font-size:.9rem; }
+    .cilbl { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--g500); margin-bottom:4px; }
+    .cival { font-size:.86rem; color:var(--dark); font-weight:500; line-height:1.6; }
+    .cival a { color:var(--blue); text-decoration:none; }
+    .cival a:hover { text-decoration:underline; }
+    .sr { display:flex; gap:10px; padding:4px 0 0; }
+    .sb {
+        width:38px; height:38px; background:var(--g50); border:1px solid var(--g200); border-radius:10px;
+        display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--g600); font-size:.95rem; transition:.2s;
+    }
+    .sb:hover { background:var(--blue); color:#fff; border-color:var(--blue); transform:translateY(-2px); }
+
+    .cf { background:var(--g50); border-radius:20px; padding:38px; border:1px solid var(--g100); }
+    .cf h3 { font-size:1.22rem; font-weight:800; color:var(--dark); margin-bottom:26px; }
+    .fr { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+    .fg { margin-bottom:13px; }
+    .fg label { display:block; font-size:.7rem; font-weight:700; color:var(--g800); margin-bottom:5px; text-transform:uppercase; letter-spacing:.5px; }
+    .fg input, .fg textarea, .fg select {
+        width:100%; padding:11px 14px; border:1.5px solid var(--g200); border-radius:9px;
+        font-family:'Inter',sans-serif; font-size:.87rem; color:var(--dark); background:#fff; outline:none; transition:.2s;
+    }
+    .fg input:focus,.fg textarea:focus,.fg select:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(26,79,160,.09); }
+    .fg textarea { resize:vertical; min-height:110px; }
+    .bsub {
+        width:100%; background:linear-gradient(135deg,var(--blue),var(--mid));
+        color:#fff; font-family:'Inter',sans-serif; font-size:.92rem; font-weight:700;
+        padding:14px; border:none; border-radius:10px; cursor:pointer; transition:.25s;
+        display:flex; align-items:center; justify-content:center; gap:10px; margin-top:6px;
+    }
+    .bsub:hover { transform:translateY(-2px); box-shadow:0 8px 26px rgba(26,79,160,.38); }
+    .bsub:disabled { opacity:.75; cursor:default; transform:none; box-shadow:none; }
+
+    /* ═══════════════════ FOOTER ═══════════════════ */
+    footer { background:var(--dark); color:rgba(255,255,255,.55); padding:60px 0 0; }
+    .fg2 { display:grid; grid-template-columns:1.55fr 1fr 1fr 1.1fr; gap:44px; padding-bottom:44px; }
+    .fb img { height:38px; margin-bottom:15px; }
+    .fb p { font-size:.82rem; line-height:1.82; color:rgba(255,255,255,.44); margin-bottom:20px; }
+    .fh { font-size:.74rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#fff; margin-bottom:17px; }
+    .fl { list-style:none; display:flex; flex-direction:column; gap:9px; }
+    .fl a { font-size:.82rem; color:rgba(255,255,255,.46); text-decoration:none; transition:.18s; }
+    .fl a:hover { color:#fff; }
+    .fci { display:flex; flex-direction:column; gap:12px; }
+    .fcii { display:flex; align-items:flex-start; gap:10px; }
+    .fcii i { color:var(--sky); font-size:.8rem; margin-top:3px; flex-shrink:0; }
+    .fcii span, .fcii a { font-size:.79rem; color:rgba(255,255,255,.46); line-height:1.6; text-decoration:none; transition:.18s; }
+    .fcii a:hover { color:rgba(255,255,255,.85); }
+    .fb2 {
+        border-top:1px solid rgba(255,255,255,.06); padding:22px 0;
+        display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    }
+    .fb2 p { font-size:.75rem; }
+    .fleg { display:flex; gap:18px; }
+    .fleg a { font-size:.75rem; color:rgba(255,255,255,.36); text-decoration:none; transition:.18s; }
+    .fleg a:hover { color:rgba(255,255,255,.8); }
+
+    /* ═══════════════════ WHATSAPP ═══════════════════ */
+    .wbtn {
+        position:fixed; bottom:28px; right:28px; z-index:999;
+        width:58px; height:58px; background:#25d366; border-radius:50%;
+        display:flex; align-items:center; justify-content:center;
+        box-shadow:0 4px 22px rgba(37,211,102,.45); text-decoration:none;
+        animation:wf 2.5s ease-in-out infinite;
+    }
+    .wbtn:hover { transform:scale(1.12); box-shadow:0 6px 30px rgba(37,211,102,.6); animation:none; }
+    .wbtn i { color:#fff; font-size:1.75rem; }
+    @keyframes wf { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    .wtt {
+        position:fixed; bottom:37px; right:98px; z-index:998;
+        background:#fff; color:var(--dark); font-size:.79rem; font-weight:600;
+        padding:7px 13px; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,.12);
+        white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .2s;
+    }
+    .wbtn:hover ~ .wtt { opacity:1; }
+
+    /* ═══════════════════ COOKIE ═══════════════════ */
+    .ckbar {
+        position:fixed; bottom:0; left:0; right:0; z-index:9999;
+        background:rgba(8,16,31,.97); backdrop-filter:blur(12px);
+        border-top:1px solid rgba(255,255,255,.07);
+        padding:18px 28px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+        transition:transform .4s ease;
+    }
+    .ckbar.hid { transform:translateY(100%); }
+    .cktxt { font-size:.8rem; color:rgba(255,255,255,.6); flex:1; min-width:200px; }
+    .cktxt a { color:var(--sky); text-decoration:none; }
+    .ckbts { display:flex; gap:10px; }
+    .ckb { padding:8px 18px; border-radius:8px; font-family:'Inter',sans-serif; font-size:.79rem; font-weight:600; cursor:pointer; border:none; transition:.2s; }
+    .ckb.ac { background:var(--green); color:#fff; }
+    .ckb.ac:hover { background:var(--green-l); }
+    .ckb.dc { background:rgba(255,255,255,.07); color:rgba(255,255,255,.65); }
+    .ckb.dc:hover { background:rgba(255,255,255,.12); }
+
+    /* ═══════════════════ RESPONSIVE ═══════════════════ */
+    @media (max-width:1100px) {
+        .sg { grid-template-columns:repeat(2,1fr); }
+        .logos-grid { grid-template-columns:repeat(3,1fr); }
+        .fg2 { grid-template-columns:1fr 1fr; }
+        .clients-showcase { grid-template-columns:1fr; }
+        .clients-img-wrap { max-width:520px; margin:0 auto; }
+    }
+    @media (max-width:1024px) {
+        .hin { grid-template-columns:1fr; }
+        .hv { display:none; }
+        .htitle { font-size:2.3rem; }
+        .ag { grid-template-columns:1fr; gap:36px; }
+    }
+    @media (max-width:768px) {
+        nav { display:none; }
+        .mbtn { display:block; }
+        section { padding:64px 0; }
+        .bg   { grid-template-columns:1fr; }
+        .sw   { grid-template-columns:repeat(2,1fr); margin:0 16px; }
+        .cw   { grid-template-columns:1fr; }
+        .fr   { grid-template-columns:1fr; }
+        .fg2  { grid-template-columns:1fr; gap:28px; }
+        .fb2  { flex-direction:column; text-align:center; }
+        .hstats { gap:20px; }
+        .mvv  { grid-template-columns:1fr; }
+        .logos-grid { grid-template-columns:repeat(2,1fr); }
+        .sg   { grid-template-columns:1fr; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header id="hdr">
+    <div class="hi">
+        <a href="#home" class="logo" aria-label="Connected World">
+            <img src="https://connectedworldsp.com.br/images/logoheader.png" alt="Connected World">
+        </a>
+        <nav>
+            <a href="#home"         class="on">Home</a>
+            <a href="#sobre"             >Sobre Nós</a>
+            <a href="#solucoes"          >Soluções em TI</a>
+            <a href="#clientes"          >Clientes</a>
+            <a href="#contato" class="ncta">Fale Conosco</a>
+        </nav>
+        <button class="mbtn" onclick="tmenu()" aria-label="Menu"><i class="fas fa-bars" id="mico"></i></button>
+    </div>
+    <div class="mnav" id="mnav">
+        <a href="#home"     onclick="cmenu()">Home</a>
+        <a href="#sobre"    onclick="cmenu()">Sobre Nós</a>
+        <a href="#solucoes" onclick="cmenu()">Soluções em TI</a>
+        <a href="#clientes" onclick="cmenu()">Clientes</a>
+        <a href="#contato"  onclick="cmenu()">Fale Conosco</a>
+    </div>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="home">
+    <canvas id="hcv"></canvas>
+    <div class="hin">
+        <div>
+            <div class="hbadge">Alphaville &bull; Barueri – SP</div>
+            <h1 class="htitle">
+                Soluções em TI para
+                <span class="acc">impulsionar seu negócio</span>
+            </h1>
+            <p class="hdesc">
+                Estamos constantemente aprimorando e disponibilizando as melhores oportunidades de negócio, aliado à tecnologia da informação e uma equipe treinada pelos grandes fabricantes.
+            </p>
+            <div class="hact">
+                <a href="#solucoes" class="bp"><i class="fas fa-th-large"></i> Ver Soluções</a>
+                <a href="#contato"  class="bo"><i class="fas fa-phone-alt"></i> Fale Conosco</a>
+            </div>
+            <div class="hstats">
+                <div>
+                    <div class="hsn">10<span class="pl">+</span></div>
+                    <div class="hsl">Anos de Mercado</div>
+                </div>
+                <div>
+                    <div class="hsn">200<span class="pl">+</span></div>
+                    <div class="hsl">Clientes Atendidos</div>
+                </div>
+                <div>
+                    <div class="hsn">98<span class="pl">%</span></div>
+                    <div class="hsl">Satisfação</div>
+                </div>
+            </div>
+        </div>
+        <div class="hv" aria-hidden="true">
+            <div class="gw">
+                <div class="ring r1"></div>
+                <div class="ring r2"></div>
+                <div class="ring r3"></div>
+                <div class="gc">
+                    <svg class="gsvg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                         fill="none" stroke="rgba(255,255,255,.55)" stroke-width=".6">
+                        <circle cx="50" cy="50" r="34"/>
+                        <ellipse cx="50" cy="50" rx="19" ry="34"/>
+                        <line x1="16" y1="50" x2="84" y2="50"/>
+                        <line x1="50" y1="16" x2="50" y2="84"/>
+                        <ellipse cx="50" cy="50" rx="34" ry="12" opacity=".4"/>
+                        <ellipse cx="50" cy="50" rx="34" ry="24" opacity=".3"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════ SOBRE NÓS ══════════ -->
+<section id="sobre">
+    <div class="ct">
+        <div class="ag">
+            <div class="avc fu">
+                <div class="ig">
+                    <div class="ic"><i class="fas fa-server"></i><p>Infraestrutura</p></div>
+                    <div class="ic"><i class="fas fa-shield-halved"></i><p>Segurança</p></div>
+                    <div class="ic"><i class="fas fa-network-wired"></i><p>Redes</p></div>
+                    <div class="ic"><i class="fas fa-headset"></i><p>Suporte 24h</p></div>
+                </div>
+                <div class="alg">
+                    <img src="https://connectedworldsp.com.br/images/logoheader.png" alt="Connected World">
+                </div>
+            </div>
+
+            <div class="fu d1">
+                <div class="stag"><i class="fas fa-building"></i> Sobre Nós</div>
+                <h2 class="stit">Referência em <em>infraestrutura e conectividade</em></h2>
+                <p class="sdesc">
+                    A <strong>Connected World</strong> é uma empresa especializada em Soluções em TI com atuação em território nacional, atendendo os setores corporativo, comercial, industrial e empresarial. Localizada no coração de Alphaville – Barueri, São Paulo.
+                </p>
+                <div class="bq">
+                    <i class="fas fa-quote-left"></i>
+                    <p>Estamos constantemente aprimorando e disponibilizando as melhores oportunidades de negócio, aliado à tecnologia da informação e uma equipe treinada pelos grandes fabricantes.</p>
+                </div>
+                <p class="sdesc">
+                    Fornecemos produtos e serviços de alta qualidade em Tecnologia da Informação, construindo relacionamentos de longo prazo com nossos clientes e parceiros.
+                </p>
+
+                <!-- Missão / Visão / Valores -->
+                <div class="mvv">
+                    <div class="mvv-card">
+                        <div class="mvv-icon mis"><i class="fas fa-bullseye"></i></div>
+                        <div class="mvv-title">Missão</div>
+                        <div class="mvv-text">Fornecer soluções em TI de alta qualidade construindo relacionamentos de longo prazo.</div>
+                    </div>
+                    <div class="mvv-card">
+                        <div class="mvv-icon vis"><i class="fas fa-eye"></i></div>
+                        <div class="mvv-title">Visão</div>
+                        <div class="mvv-text">Ser referência nacional em soluções tecnológicas inovadoras e de excelência.</div>
+                    </div>
+                    <div class="mvv-card">
+                        <div class="mvv-icon val"><i class="fas fa-gem"></i></div>
+                        <div class="mvv-title">Valores</div>
+                        <div class="mvv-text">Excelência, segurança, sustentabilidade e responsividade às mudanças do mercado.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════ SOLUÇÕES EM TI ══════════ -->
+<section id="solucoes">
+    <div class="ct">
+        <div class="sh c">
+            <div class="stag"><i class="fas fa-microchip"></i> Soluções em TI</div>
+            <h2 class="stit">O que a <em>Connected World</em> oferece</h2>
+            <p class="sdesc">
+                Soluções completas em tecnologia para empresas de todos os segmentos, com equipamentos modernos e equipe certificada pelos grandes fabricantes.
+            </p>
+        </div>
+
+        <div class="sg">
+            <div class="sc fu">
+                <div class="si"><i class="fas fa-headset"></i></div>
+                <h3 class="st">Suporte Técnico 24h</h3>
+                <p class="sd">Field Service 24 horas por dia com técnicos no local e assistência remota em todo o território nacional. Inclui microinformática, instalação de equipamentos e planejamento de sistemas.</p>
+            </div>
+            <div class="sc fu d1">
+                <div class="si"><i class="fas fa-network-wired"></i></div>
+                <h3 class="st">Infraestrutura de Redes</h3>
+                <p class="sd">Redes locais, instalação de cabeamento, montagem de rack, instalação e manutenção de fibra óptica e certificação de redes em todas as categorias.</p>
+            </div>
+            <div class="sc fu d2">
+                <div class="si"><i class="fas fa-phone-volume"></i></div>
+                <h3 class="st">Telefonia</h3>
+                <p class="sd">Cabeamento interno e externo, distribuição de ramais, instalação de interfones e sistemas de portaria remota para condomínios e empresas.</p>
+            </div>
+            <div class="sc fu d3">
+                <div class="si"><i class="fas fa-video"></i></div>
+                <h3 class="st">Segurança Eletrônica</h3>
+                <p class="sd">Câmeras de segurança, alarmes, sensores de movimento, controle de acesso remoto e portaria virtual com monitoramento inteligente.</p>
+            </div>
+            <div class="sc fu d4">
+                <div class="si"><i class="fas fa-bolt"></i></div>
+                <h3 class="st">Redes Elétricas</h3>
+                <p class="sd">Instalação de redes estabilizadas, painéis de distribuição, circuitos de iluminação e projetos de pontos de energia para ambientes corporativos.</p>
+            </div>
+            <div class="sc fu d5">
+                <div class="si"><i class="fas fa-cloud-arrow-up"></i></div>
+                <h3 class="st">Cloud Computing</h3>
+                <p class="sd">Migração, hospedagem e gerenciamento de ambientes em nuvem com escalabilidade, segurança e redução de custos operacionais.</p>
+            </div>
+            <div class="sc fu d6">
+                <div class="si"><i class="fas fa-fire-extinguisher"></i></div>
+                <h3 class="st">Alarme de Incêndio</h3>
+                <p class="sd">Instalação de centrais, detectores, acionadores manuais e dispositivos de sinalização para proteção e conformidade com normas de segurança.</p>
+            </div>
+            <div class="sc fu d7">
+                <div class="si"><i class="fas fa-hard-hat"></i></div>
+                <h3 class="st">Infraestrutura Civil</h3>
+                <p class="sd">Execução de projetos com eletrocalhas, perfilados, eletrodutos e canalizações em alumínio e PVC para ambientes industriais e comerciais.</p>
+            </div>
+        </div>
+
+        <!-- Serviços especializados -->
+        <div class="spec-wrap fu">
+            <p class="spec-title">Serviços Especializados</p>
+            <div class="spec-grid">
+                <span class="spec-pill"><i class="fas fa-satellite-dish"></i> Manutenção Antena VSAT</span>
+                <span class="spec-pill"><i class="fas fa-credit-card"></i> Instalação ATM / Quiosques</span>
+                <span class="spec-pill"><i class="fas fa-cash-register"></i> Sistemas POS Personalizados</span>
+                <span class="spec-pill"><i class="fas fa-barcode"></i> Self-Checkout</span>
+                <span class="spec-pill"><i class="fas fa-ethernet"></i> Cabeamento Estruturado</span>
+                <span class="spec-pill"><i class="fas fa-wifi"></i> Redes Wireless</span>
+                <span class="spec-pill"><i class="fas fa-diagram-project"></i> Projetos & Design</span>
+                <span class="spec-pill"><i class="fas fa-circle-nodes"></i> Fibra Óptica</span>
+                <span class="spec-pill"><i class="fas fa-phone-volume"></i> Telefonia IP</span>
+                <span class="spec-pill"><i class="fas fa-wave-square"></i> Redes Ópticas P2MP</span>
+                <span class="spec-pill"><i class="fas fa-video"></i> CFTV / CCTV</span>
+                <span class="spec-pill"><i class="fas fa-server"></i> Data Center</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════ DIFERENCIAIS ══════════ -->
+<section id="diferenciais">
+    <div class="ct">
+        <div class="sh" style="position:relative;z-index:1;">
+            <div class="stag"><i class="fas fa-star"></i> Por que nos escolher</div>
+            <h2 class="stit">Trabalhando com a <em>Connected World</em></h2>
+            <p class="sdesc" style="max-width:540px;">
+                Nossos diferenciais garantem que cada projeto entregue supere as expectativas e gere valor real para o seu negócio.
+            </p>
+        </div>
+        <div class="bg">
+            <div class="bc fu">
+                <div class="bic"><i class="fas fa-check"></i></div>
+                <h3 class="btit">Equipamentos Modernos</h3>
+                <p class="bdsc">Trabalhamos com os melhores e mais modernos equipamentos do mercado, garantindo máxima performance e confiabilidade para sua empresa.</p>
+            </div>
+            <div class="bc fu d1">
+                <div class="bic"><i class="fas fa-binoculars"></i></div>
+                <h3 class="btit">Atenção às Inovações</h3>
+                <p class="bdsc">Monitoramos constantemente as inovações do mercado de TI para antecipar tendências e oferecer soluções sempre atualizadas.</p>
+            </div>
+            <div class="bc fu d2">
+                <div class="bic"><i class="fas fa-graduation-cap"></i></div>
+                <h3 class="btit">Equipe Certificada</h3>
+                <p class="bdsc">Nossa equipe é continuamente treinada pelos grandes fabricantes, garantindo o mais alto nível de conhecimento técnico e certificações reconhecidas.</p>
+            </div>
+            <div class="bc fu d3">
+                <div class="bic"><i class="fas fa-clock"></i></div>
+                <h3 class="btit">Cumprimento de Prazos</h3>
+                <p class="bdsc">Superamos expectativas dos clientes com rigoroso cumprimento de prazos e cronogramas acordados em todos os projetos entregues.</p>
+            </div>
+            <div class="bc fu d4">
+                <div class="bic"><i class="fas fa-certificate"></i></div>
+                <h3 class="btit">Garantia de Fabricante</h3>
+                <p class="bdsc">Trabalhamos com produtos originais e garantimos todos os direitos de garantia dos fabricantes em todos os equipamentos fornecidos.</p>
+            </div>
+            <div class="bc fu d5">
+                <div class="bic"><i class="fas fa-chart-line"></i></div>
+                <h3 class="btit">Resultados Financeiros</h3>
+                <p class="bdsc">Melhoramos os resultados financeiros do seu negócio através de infraestrutura de TI eficiente, reduzindo custos e aumentando produtividade.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════ CLIENTES ══════════ -->
+<section id="clientes">
+    <div class="ct">
+        <div class="sh c">
+            <div class="stag"><i class="fas fa-handshake"></i> Nossos Clientes</div>
+            <h2 class="stit">Empresas que <em>confiam</em> na Connected World</h2>
+            <p class="sdesc">
+                Atendemos grandes marcas nacionais e multinacionais nos segmentos financeiro, saúde, alimentação e tecnologia em todo o Brasil.
+            </p>
+        </div>
+
+        <!-- Imagem original do site + seções -->
+        <div class="clients-showcase">
+            <div class="clients-img-wrap fu">
+                <img src="https://connectedworldsp.com.br/images/2026/01/16/clientescon.jpg"
+                     alt="Clientes Connected World – Banco do Brasil, Bradesco, Drogasil, McDonald's, Laurenti, NTT">
+                <div class="clients-img-badge">
+                    <i class="fas fa-shield-halved"></i>
+                    Clientes em todo o Brasil
+                </div>
+            </div>
+
+            <div class="fu d1">
+                <div class="stag" style="margin-bottom:14px;"><i class="fas fa-building"></i> Setores Atendidos</div>
+                <h3 class="stit" style="font-size:1.6rem; margin-bottom:18px;">Atuação <em>nacional</em> em múltiplos segmentos</h3>
+                <p class="sdesc" style="margin-bottom:28px;">
+                    Nossa expertise abrange desde grandes instituições financeiras até redes de varejo e alimentação, com soluções personalizadas para cada segmento.
+                </p>
+                <div class="client-sectors">
+                    <div class="cs-item"><i class="fas fa-landmark"></i> Setor Financeiro & Bancário</div>
+                    <div class="cs-item"><i class="fas fa-pills"></i> Saúde & Farmácias</div>
+                    <div class="cs-item"><i class="fas fa-burger"></i> Alimentação & Food Service</div>
+                    <div class="cs-item"><i class="fas fa-building-columns"></i> Construção & Incorporação</div>
+                    <div class="cs-item"><i class="fas fa-microchip"></i> Tecnologia & Telecomunicações</div>
+                    <div class="cs-item"><i class="fas fa-industry"></i> Industrial & Corporativo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo grid individual -->
+        <div class="fu">
+            <p class="clients-logos-title">Alguns dos nossos clientes</p>
+            <div class="logos-grid">
+
+                <!-- Banco do Brasil -->
+                <div class="logo-card">
+                    <div class="lc-logo">
+                        <div class="brand-bb">
+                            <span>BANCO<br>DO BRASIL</span>
+                        </div>
+                    </div>
+                    <span class="lc-name">Banco do Brasil</span>
+                </div>
+
+                <!-- Bradesco -->
+                <div class="logo-card">
+                    <div class="lc-logo">
+                        <div class="brand-bra">
+                            <span>bradesco</span>
+                        </div>
+                    </div>
+                    <span class="lc-name">Bradesco</span>
+                </div>
+
+                <!-- Drogasil -->
+                <div class="logo-card">
+                    <div class="lc-logo">
+                        <div class="brand-dro">
+                            <span class="plus">+</span>
+                            <span class="dname">DROGASIL</span>
+                        </div>
+                    </div>
+                    <span class="lc-name">Drogasil</span>
+                </div>
+
+                <!-- McDonald's -->
+                <div class="logo-card">
+                    <div class="lc-logo">
+                        <div class="brand-mc">
+                            <span>M</span>
+                        </div>
+                    </div>
+                    <span class="lc-name">McDonald's</span>
+                </div>
+
+                <!-- Laurenti -->
+                <div class="logo-card">
+                    <div class="lc-logo">
+                        <div class="brand-lau">
+                            <div class="lau-bar"></div>
+                            <span>LAURENTI</span>
+                            <div class="lau-bar"></div>
+                        </div>
+                    </div>
+                    <span class="lc-name">Laurenti</span>
+                </div>
+
+                <!-- NTT -->
+                <div class="logo-card">
+                    <div class="lc-logo">
+                        <div class="brand-ntt">
+                            <span>NTT</span>
+                        </div>
+                    </div>
+                    <span class="lc-name">NTT</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════ STATS ══════════ -->
+<div id="stats" style="padding:0 0 96px;">
+    <div style="max-width:1200px;margin:0 auto;padding:0 28px;">
+        <div class="sw">
+            <div class="si2">
+                <span class="snum"><span class="cnt" data-t="10">0</span><span class="ssuf">+</span></span>
+                <p class="slbl">Anos de Mercado</p>
+            </div>
+            <div class="si2">
+                <span class="snum"><span class="cnt" data-t="200">0</span><span class="ssuf">+</span></span>
+                <p class="slbl">Clientes Atendidos</p>
+            </div>
+            <div class="si2">
+                <span class="snum"><span class="cnt" data-t="500">0</span><span class="ssuf">+</span></span>
+                <p class="slbl">Projetos Entregues</p>
+            </div>
+            <div class="si2">
+                <span class="snum"><span class="cnt" data-t="98">0</span><span class="ssuf">%</span></span>
+                <p class="slbl">Satisfação dos Clientes</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════ CONTATO ══════════ -->
+<section id="contato">
+    <div class="ct">
+        <div class="sh c">
+            <div class="stag"><i class="fas fa-envelope"></i> Contato</div>
+            <h2 class="stit">Fale com nossa <em>equipe</em></h2>
+            <p class="sdesc">Estamos prontos para entender as necessidades do seu negócio e apresentar a melhor solução em TI para você.</p>
+        </div>
+        <div class="cw">
+            <div class="ci fu">
+                <div class="cii">
+                    <div class="cico"><i class="fas fa-phone-alt"></i></div>
+                    <div>
+                        <div class="cilbl">Telefone</div>
+                        <div class="cival"><a href="tel:+5513981900175">(13) 98190-0175</a></div>
+                    </div>
+                </div>
+                <div class="cii">
+                    <div class="cico"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <div class="cilbl">E-mail</div>
+                        <div class="cival"><a href="mailto:contato@connectedworldsp.com.br">contato@connectedworldsp.com.br</a></div>
+                    </div>
+                </div>
+                <div class="cii">
+                    <div class="cico"><i class="fas fa-location-dot"></i></div>
+                    <div>
+                        <div class="cilbl">Endereço</div>
+                        <div class="cival">
+                            Alameda Rio Negro, 1030 – Escr. 2304<br>
+                            Cond. Stadium, Alphaville<br>
+                            Barueri – SP, CEP 06454-000
+                        </div>
+                    </div>
+                </div>
+                <div class="cii">
+                    <div class="cico"><i class="fab fa-whatsapp"></i></div>
+                    <div>
+                        <div class="cilbl">WhatsApp</div>
+                        <div class="cival"><a href="https://wa.me/5513981900175" target="_blank" rel="noopener">Iniciar conversa no WhatsApp</a></div>
+                    </div>
+                </div>
+                <div class="cii">
+                    <div class="cico"><i class="fas fa-file-invoice"></i></div>
+                    <div>
+                        <div class="cilbl">Dados Fiscais</div>
+                        <div class="cival">
+                            CNPJ: 35.871.434/0001-41<br>
+                            Insc. Municipal: 4.95468-7
+                        </div>
+                    </div>
+                </div>
+                <div style="padding:2px 0 0 2px;">
+                    <div class="cilbl" style="margin-bottom:12px;">Redes Sociais</div>
+                    <div class="sr">
+                        <a href="https://www.facebook.com/" class="sb" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://br.linkedin.com/" class="sb" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/" class="sb" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cf fu d1">
+                <h3>Envie uma mensagem</h3>
+                <div class="fr">
+                    <div class="fg"><label>Nome</label><input type="text" placeholder="Seu nome completo"></div>
+                    <div class="fg"><label>Empresa</label><input type="text" placeholder="Nome da empresa"></div>
+                </div>
+                <div class="fr">
+                    <div class="fg"><label>E-mail</label><input type="email" placeholder="seu@email.com.br"></div>
+                    <div class="fg"><label>Telefone</label><input type="tel" placeholder="(00) 00000-0000"></div>
+                </div>
+                <div class="fg">
+                    <label>Serviço de Interesse</label>
+                    <select>
+                        <option value="">Selecione uma opção</option>
+                        <option>Suporte Técnico 24h</option>
+                        <option>Infraestrutura de Redes</option>
+                        <option>Telefonia</option>
+                        <option>Segurança Eletrônica</option>
+                        <option>Redes Elétricas</option>
+                        <option>Cloud Computing</option>
+                        <option>Alarme de Incêndio</option>
+                        <option>Infraestrutura Civil</option>
+                        <option>Cabeamento Estruturado</option>
+                        <option>Fibra Óptica</option>
+                        <option>CFTV / CCTV</option>
+                        <option>Outro</option>
+                    </select>
+                </div>
+                <div class="fg">
+                    <label>Assunto</label>
+                    <input type="text" placeholder="Assunto da mensagem">
+                </div>
+                <div class="fg">
+                    <label>Mensagem</label>
+                    <textarea placeholder="Descreva como podemos ajudar sua empresa…"></textarea>
+                </div>
+                <button class="bsub" id="sbtn" onclick="hsub()">
+                    <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+    <div class="ct">
+        <div class="fg2">
+            <div class="fb">
+                <img src="https://connectedworldsp.com.br/images/logoheader.png" alt="Connected World">
+                <p>Especialistas em Soluções em TI para empresas que buscam excelência tecnológica, agilidade operacional e resultados concretos em todo o Brasil.</p>
+                <div class="sr">
+                    <a href="https://www.facebook.com/"   class="sb" target="_blank" rel="noopener" aria-label="Facebook" ><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://br.linkedin.com/"    class="sb" target="_blank" rel="noopener" aria-label="LinkedIn" ><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/"  class="sb" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="fh">Navegação</h4>
+                <ul class="fl">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#solucoes">Soluções em TI</a></li>
+                    <li><a href="#clientes">Clientes</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="fh">Soluções</h4>
+                <ul class="fl">
+                    <li><a href="#solucoes">Suporte Técnico 24h</a></li>
+                    <li><a href="#solucoes">Infraestrutura de Redes</a></li>
+                    <li><a href="#solucoes">Segurança Eletrônica</a></li>
+                    <li><a href="#solucoes">Cloud Computing</a></li>
+                    <li><a href="#solucoes">Telefonia</a></li>
+                    <li><a href="#solucoes">Redes Elétricas</a></li>
+                    <li><a href="#solucoes">Alarme de Incêndio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="fh">Contato</h4>
+                <div class="fci">
+                    <div class="fcii"><i class="fas fa-phone-alt"></i><a href="tel:+5513981900175">(13) 98190-0175</a></div>
+                    <div class="fcii"><i class="fas fa-envelope"></i><a href="mailto:contato@connectedworldsp.com.br">contato@connectedworldsp.com.br</a></div>
+                    <div class="fcii"><i class="fas fa-location-dot"></i><span>Al. Rio Negro, 1030 – Escr. 2304<br>Alphaville, Barueri – SP<br>CEP 06454-000</span></div>
+                    <div class="fcii"><i class="fas fa-file-invoice"></i><span>CNPJ: 35.871.434/0001-41</span></div>
+                    <div class="fcii"><i class="fas fa-id-card"></i><span>Insc. Municipal: 4.95468-7</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="fb2">
+            <p>© 2024 Connected World. Todos os direitos reservados.</p>
+            <div class="fleg">
+                <a href="https://connectedworldsp.com.br/Termosdeuso.pdf" target="_blank" rel="noopener">Termos de Uso</a>
+                <a href="https://connectedworldsp.com.br/politica.pdf"    target="_blank" rel="noopener">Política de Privacidade</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ══════════ FLOATING WHATSAPP ══════════ -->
+<a href="https://wa.me/5513981900175" class="wbtn" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<div class="wtt">Fale no WhatsApp</div>
+
+<!-- ══════════ COOKIE ══════════ -->
+<div class="ckbar" id="ck">
+    <p class="cktxt">
+        Utilizamos cookies para melhorar sua experiência. Ao continuar navegando, você concorda com nossa
+        <a href="https://connectedworldsp.com.br/politica.pdf" target="_blank" rel="noopener">Política de Privacidade</a>.
+    </p>
+    <div class="ckbts">
+        <button class="ckb dc" onclick="setCk('no')">Recusar</button>
+        <button class="ckb ac" onclick="setCk('yes')">Aceitar</button>
+    </div>
+</div>
+
+<!-- ══════════ SCRIPTS ══════════ -->
+<script>
+/* header scroll */
+const hdrEl = document.getElementById('hdr');
+window.addEventListener('scroll', () => hdrEl.classList.toggle('sc', window.scrollY > 55));
+
+/* mobile menu */
+function tmenu(){
+    const n=document.getElementById('mnav'), i=document.getElementById('mico');
+    const o=n.classList.toggle('o');
+    i.className = o ? 'fas fa-times' : 'fas fa-bars';
+}
+function cmenu(){
+    document.getElementById('mnav').classList.remove('o');
+    document.getElementById('mico').className='fas fa-bars';
+}
+
+/* active nav */
+const secs = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('nav a');
+new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if(e.isIntersecting)
+            navAs.forEach(a => {
+                a.classList.remove('on');
+                if(a.getAttribute('href')==='#'+e.target.id) a.classList.add('on');
+            });
+    });
+}, {threshold:.35}).observe;
+secs.forEach(s => new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting)
+        navAs.forEach(a=>{
+            a.classList.remove('on');
+            if(a.getAttribute('href')==='#'+entries[0].target.id) a.classList.add('on');
+        });
+},{threshold:.35}).observe(s));
+
+/* fade-up */
+new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('v');} });
+},{threshold:.12}).observe;
+document.querySelectorAll('.fu').forEach(el=>{
+    new IntersectionObserver(([e])=>{ if(e.isIntersecting){el.classList.add('v');} },{threshold:.12}).observe(el);
+});
+
+/* hero canvas */
+(function(){
+    const cv=document.getElementById('hcv'), cx=cv.getContext('2d');
+    let pts=[];
+    function resize(){ cv.width=window.innerWidth; cv.height=window.innerHeight; }
+    resize(); window.addEventListener('resize',resize);
+    for(let i=0;i<65;i++) pts.push({
+        x:Math.random()*cv.width, y:Math.random()*cv.height,
+        vx:(Math.random()-.5)*.38, vy:(Math.random()-.5)*.38,
+        r:Math.random()*1.8+.8
+    });
+    function draw(){
+        cx.clearRect(0,0,cv.width,cv.height);
+        pts.forEach(p=>{
+            p.x+=p.vx; p.y+=p.vy;
+            if(p.x<0||p.x>cv.width)  p.vx*=-1;
+            if(p.y<0||p.y>cv.height) p.vy*=-1;
+            cx.beginPath(); cx.arc(p.x,p.y,p.r,0,Math.PI*2);
+            cx.fillStyle='rgba(91,168,229,.55)'; cx.fill();
+        });
+        for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+            const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.hypot(dx,dy);
+            if(d<135){
+                cx.beginPath(); cx.moveTo(pts[i].x,pts[i].y); cx.lineTo(pts[j].x,pts[j].y);
+                cx.strokeStyle=`rgba(61,141,212,${.17*(1-d/135)})`; cx.lineWidth=.7; cx.stroke();
+            }
+        }
+        requestAnimationFrame(draw);
+    }
+    draw();
+})();
+
+/* counters */
+const statsDiv=document.getElementById('stats');
+let counted=false;
+new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting||counted) return;
+    counted=true;
+    document.querySelectorAll('.cnt').forEach(el=>{
+        const t=+el.dataset.t, step=Math.max(1,Math.ceil(t/55));
+        let c=0;
+        const tm=setInterval(()=>{ c+=step; if(c>=t){c=t;clearInterval(tm);} el.textContent=c; },22);
+    });
+},{threshold:.5}).observe(statsDiv);
+
+/* form */
+function hsub(){
+    const b=document.getElementById('sbtn');
+    b.innerHTML='<i class="fas fa-check"></i> Mensagem enviada com sucesso!';
+    b.style.background='var(--green)'; b.disabled=true;
+    setTimeout(()=>{ b.innerHTML='<i class="fas fa-paper-plane"></i> Enviar Mensagem'; b.style.background=''; b.disabled=false; },3500);
+}
+
+/* cookie */
+function setCk(v){ localStorage.setItem('cw_ck',v); document.getElementById('ck').classList.add('hid'); }
+if(localStorage.getItem('cw_ck')) document.getElementById('ck').classList.add('hid');
+</script>
+</body>
+</html>
